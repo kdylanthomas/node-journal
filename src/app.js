@@ -9,6 +9,7 @@ require('./database'); // make sure database gets run
 require('./seed');
 
 app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
 
 app.use('/api', router);
 

@@ -16,6 +16,18 @@ router.get('/entries', function (req, res) {
 	});
 });
 
-
+// POST entries from a user
+router.post('/entries', function (req, res) {
+	var entry = new Entry();
+	entry.user = req.body.user;
+	entry.text = req.body.text;
+	entry.date = new Date();
+	entry.save(function (err, todo) {
+		if (err) {
+			return res.status(500).json({err: err.message});
+		};
+		res.json({message: 'entry successfully saved!'});
+	});
+});
 
 module.exports = router;
